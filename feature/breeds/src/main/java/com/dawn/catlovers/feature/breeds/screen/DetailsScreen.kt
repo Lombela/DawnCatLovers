@@ -1,5 +1,8 @@
 package com.dawn.catlovers.feature.breeds.screen
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,21 +21,29 @@ import com.dawn.catlovers.core.model.CatBreed
 import com.dawn.catlovers.feature.breeds.uistate.DetailsUiState
 import com.dawn.catlovers.feature.breeds.viewmodel.DetailsViewModel
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun DetailsRoute(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     onBack: () -> Unit,
     viewModel: DetailsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     DetailsScreen(
+        sharedTransitionScope = sharedTransitionScope,
+        animatedVisibilityScope = animatedVisibilityScope,
         uiState = uiState,
         onBack = onBack,
         onToggleFavorite = viewModel::toggleFavorite,
     )
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 private fun DetailsScreen(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     uiState: DetailsUiState,
     onBack: () -> Unit,
     onToggleFavorite: (CatBreed) -> Unit,
@@ -61,6 +72,8 @@ private fun DetailsScreen(
             }
         } else {
             BreedDetailsContent(
+                sharedTransitionScope = sharedTransitionScope,
+                animatedVisibilityScope = animatedVisibilityScope,
                 breed = breed,
                 onBack = onBack,
                 onToggleFavorite = onToggleFavorite,

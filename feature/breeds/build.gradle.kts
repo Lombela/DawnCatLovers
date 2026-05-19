@@ -35,6 +35,7 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:model"))
 
+    implementation(libs.androidx.compose.animation)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.compose.material3)

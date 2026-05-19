@@ -1,5 +1,8 @@
 package com.dawn.catlovers.feature.breeds.screen
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -32,13 +35,27 @@ import com.dawn.catlovers.feature.breeds.component.BreedImage
 import com.dawn.catlovers.feature.breeds.component.FavoriteButton
 import com.dawn.catlovers.feature.breeds.component.GradientScrim
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 internal fun HeroBreedCard(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     breed: CatBreed,
     onOpenBreed: (String) -> Unit,
     onToggleFavorite: (CatBreed) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val sharedImageModifier = with(sharedTransitionScope) {
+        Modifier
+            .sharedElement(
+                sharedContentState = rememberSharedContentState(
+                    key = BreedImageSharedElementKey(breed.id),
+                ),
+                animatedVisibilityScope = animatedVisibilityScope,
+            )
+            .fillMaxSize()
+    }
+
     Box(
         modifier = modifier
             .shadow(elevation = 2.dp, shape = RoundedCornerShape(28.dp), clip = false)
@@ -50,7 +67,7 @@ internal fun HeroBreedCard(
             contentDescription = breed.name,
             contentScale = ContentScale.Crop,
             cornerRadius = 0.dp,
-            modifier = Modifier.fillMaxSize(),
+            modifier = sharedImageModifier,
         )
         GradientScrim(modifier = Modifier.fillMaxSize())
         BreedOfDayChip(

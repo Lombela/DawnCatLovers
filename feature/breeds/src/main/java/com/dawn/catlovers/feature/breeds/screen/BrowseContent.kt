@@ -1,5 +1,8 @@
 package com.dawn.catlovers.feature.breeds.screen
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -13,8 +16,11 @@ import com.dawn.catlovers.core.model.CatBreed
 import com.dawn.catlovers.feature.breeds.uistate.BrowseUiState
 import com.dawn.catlovers.feature.breeds.uistate.QuickFilter
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 internal fun BrowseContent(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     uiState: BrowseUiState,
     onOpenBreed: (String) -> Unit,
     onSelectFilter: (QuickFilter) -> Unit,
@@ -38,6 +44,8 @@ internal fun BrowseContent(
         if (heroBreed != null) {
             item {
                 HeroBreedCard(
+                    sharedTransitionScope = sharedTransitionScope,
+                    animatedVisibilityScope = animatedVisibilityScope,
                     breed = heroBreed,
                     onOpenBreed = onOpenBreed,
                     onToggleFavorite = onToggleFavorite,
@@ -64,6 +72,8 @@ internal fun BrowseContent(
                 key = { _, row -> row.joinToString(separator = "-") { it.id } },
             ) { index, row ->
                 BrowseBreedRow(
+                    sharedTransitionScope = sharedTransitionScope,
+                    animatedVisibilityScope = animatedVisibilityScope,
                     breeds = row,
                     onOpenBreed = onOpenBreed,
                     onToggleFavorite = onToggleFavorite,

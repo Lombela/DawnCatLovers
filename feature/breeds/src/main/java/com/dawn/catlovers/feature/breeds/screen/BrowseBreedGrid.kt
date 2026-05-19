@@ -1,5 +1,8 @@
 package com.dawn.catlovers.feature.breeds.screen
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -63,8 +66,11 @@ internal fun BrowseSectionHeader(resultCount: Int) {
     }
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 internal fun BrowseBreedRow(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     breeds: List<CatBreed>,
     onOpenBreed: (String) -> Unit,
     onToggleFavorite: (CatBreed) -> Unit,
@@ -78,6 +84,8 @@ internal fun BrowseBreedRow(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         BreedGridCard(
+            sharedTransitionScope = sharedTransitionScope,
+            animatedVisibilityScope = animatedVisibilityScope,
             breed = breeds[0],
             onOpenBreed = onOpenBreed,
             onToggleFavorite = onToggleFavorite,
@@ -85,6 +93,8 @@ internal fun BrowseBreedRow(
         )
         if (breeds.size > 1) {
             BreedGridCard(
+                sharedTransitionScope = sharedTransitionScope,
+                animatedVisibilityScope = animatedVisibilityScope,
                 breed = breeds[1],
                 onOpenBreed = onOpenBreed,
                 onToggleFavorite = onToggleFavorite,
@@ -96,13 +106,27 @@ internal fun BrowseBreedRow(
     }
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 private fun BreedGridCard(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     breed: CatBreed,
     onOpenBreed: (String) -> Unit,
     onToggleFavorite: (CatBreed) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val sharedImageModifier = with(sharedTransitionScope) {
+        Modifier
+            .sharedElement(
+                sharedContentState = rememberSharedContentState(
+                    key = BreedImageSharedElementKey(breed.id),
+                ),
+                animatedVisibilityScope = animatedVisibilityScope,
+            )
+            .fillMaxSize()
+    }
+
     Column(
         modifier = modifier
             .fillMaxHeight()
@@ -121,7 +145,7 @@ private fun BreedGridCard(
                 contentDescription = breed.name,
                 contentScale = ContentScale.Crop,
                 cornerRadius = 0.dp,
-                modifier = Modifier.fillMaxSize(),
+                modifier = sharedImageModifier,
             )
             if (breed.hypoallergenic) {
                 HypoallergenicBadge(

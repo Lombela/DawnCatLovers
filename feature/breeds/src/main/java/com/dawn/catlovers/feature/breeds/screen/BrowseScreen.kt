@@ -1,5 +1,8 @@
 package com.dawn.catlovers.feature.breeds.screen
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -17,8 +20,11 @@ import com.dawn.catlovers.feature.breeds.uistate.BrowseUiState
 import com.dawn.catlovers.feature.breeds.uistate.QuickFilter
 import com.dawn.catlovers.feature.breeds.viewmodel.BrowseViewModel
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun BrowseRoute(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     onOpenBreed: (String) -> Unit,
     onOpenFilters: () -> Unit,
     onOpenFavorites: () -> Unit,
@@ -26,6 +32,8 @@ fun BrowseRoute(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     BrowseScreen(
+        sharedTransitionScope = sharedTransitionScope,
+        animatedVisibilityScope = animatedVisibilityScope,
         uiState = uiState,
         onOpenBreed = onOpenBreed,
         onOpenFilters = onOpenFilters,
@@ -36,8 +44,11 @@ fun BrowseRoute(
     )
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 private fun BrowseScreen(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     uiState: BrowseUiState,
     onOpenBreed: (String) -> Unit,
     onOpenFilters: () -> Unit,
@@ -72,6 +83,8 @@ private fun BrowseScreen(
                 onRefresh = onRefresh,
             )
             BrowseContent(
+                sharedTransitionScope = sharedTransitionScope,
+                animatedVisibilityScope = animatedVisibilityScope,
                 uiState = uiState,
                 onOpenBreed = onOpenBreed,
                 onSelectFilter = onSelectFilter,

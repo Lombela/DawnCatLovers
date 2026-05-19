@@ -1,5 +1,8 @@
 package com.dawn.catlovers.feature.breeds.screen
 
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,14 +35,29 @@ import com.dawn.catlovers.feature.breeds.component.BreedImage
 private val HeroHeight = 267.dp
 private val SheetOverlap = 23.dp
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 internal fun BreedDetailsContent(
+    sharedTransitionScope: SharedTransitionScope,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     breed: CatBreed,
     onBack: () -> Unit,
     onToggleFavorite: (CatBreed) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val statusTopPadding = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
+    val sharedImageModifier = with(sharedTransitionScope) {
+        Modifier
+            .sharedElement(
+                sharedContentState = rememberSharedContentState(
+                    key = BreedImageSharedElementKey(breed.id),
+                ),
+                animatedVisibilityScope = animatedVisibilityScope,
+            )
+            .fillMaxWidth()
+            .height(HeroHeight + statusTopPadding)
+    }
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -50,9 +68,7 @@ internal fun BreedDetailsContent(
             contentDescription = breed.name,
             contentScale = ContentScale.Crop,
             cornerRadius = 0.dp,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(HeroHeight + statusTopPadding),
+            modifier = sharedImageModifier,
         )
         DetailTopBar(
             isFavorite = breed.isFavorite,

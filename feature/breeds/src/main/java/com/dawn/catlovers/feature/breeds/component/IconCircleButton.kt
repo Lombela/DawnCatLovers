@@ -28,9 +28,14 @@ internal fun IconCircleButton(
     iconSize: Dp = 20.dp,
 ) {
     val background = when {
-        selected -> Color.White.copy(alpha = 0.92f)
+        selected -> CatLoversColors.StTropaz
         dark -> CatLoversColors.Eternity.copy(alpha = 0.42f)
         else -> Color.Transparent
+    }
+    val tint = when {
+        selected -> Color.White
+        dark -> Color.White
+        else -> CatLoversColors.Zeus
     }
     Box(
         modifier = modifier
@@ -43,7 +48,7 @@ internal fun IconCircleButton(
         Icon(
             imageVector = imageVector,
             contentDescription = contentDescription,
-            tint = if (dark) Color.White else CatLoversColors.Zeus,
+            tint = tint,
             modifier = Modifier.size(iconSize),
         )
     }
