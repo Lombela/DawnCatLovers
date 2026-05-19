@@ -1,6 +1,7 @@
 package com.dawn.catlovers.feature.breeds.screen
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -9,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.dawn.catlovers.core.designsystem.CatLoversColors
@@ -38,6 +40,7 @@ private fun DetailsScreen(
     val breed = uiState.breed
     Scaffold(
         containerColor = CatLoversColors.Linen,
+        contentWindowInsets = WindowInsets(0.dp),
         floatingActionButton = {
             if (breed != null) {
                 DetailSaveButton(

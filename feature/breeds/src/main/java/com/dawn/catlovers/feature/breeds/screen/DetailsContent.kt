@@ -5,10 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -36,6 +39,7 @@ internal fun BreedDetailsContent(
     onToggleFavorite: (CatBreed) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val statusTopPadding = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -48,7 +52,7 @@ internal fun BreedDetailsContent(
             cornerRadius = 0.dp,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(HeroHeight),
+                .height(HeroHeight + statusTopPadding),
         )
         DetailTopBar(
             isFavorite = breed.isFavorite,
@@ -57,11 +61,12 @@ internal fun BreedDetailsContent(
             onToggleFavorite = { onToggleFavorite(breed) },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 7.dp, vertical = 7.dp),
+                .padding(horizontal = 7.dp)
+                .padding(top = statusTopPadding + 7.dp),
         )
         Column(
             modifier = Modifier
-                .padding(top = HeroHeight - SheetOverlap)
+                .padding(top = statusTopPadding + HeroHeight - SheetOverlap)
                 .fillMaxSize()
                 .clip(RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp))
                 .background(CatLoversColors.Linen)
