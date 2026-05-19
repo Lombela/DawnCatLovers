@@ -1,0 +1,34 @@
+package com.dawn.catlovers.core.model
+
+data class CatBreed(
+    val id: String,
+    val name: String,
+    val origin: String,
+    val countryCode: String,
+    val description: String,
+    val temperament: List<String>,
+    val lifeSpan: String,
+    val weightMetric: String,
+    val imageUrl: String?,
+    val wikipediaUrl: String?,
+    val hypoallergenic: Boolean,
+    val indoor: Boolean,
+    val lap: Boolean,
+    val affectionLevel: Int,
+    val childFriendly: Int,
+    val dogFriendly: Int,
+    val energyLevel: Int,
+    val grooming: Int,
+    val intelligence: Int,
+    val socialNeeds: Int,
+    val vocalisation: Int,
+    val sheddingLevel: Int,
+    val coatLength: CoatLength,
+    val isFavorite: Boolean = false,
+) {
+    val temperamentPreview: String
+        get() = temperament.take(3).joinToString(" · ")
+
+    val originLabel: String
+        get() = origin.ifBlank { "Unknown" }
+}

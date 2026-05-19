@@ -1,0 +1,28 @@
+package com.dawn.catlovers.core.network
+
+data class NetworkCatBreed(
+    val id: String,
+    val name: String,
+    val origin: String,
+    val countryCode: String,
+    val description: String,
+    val temperament: List<String>,
+    val lifeSpan: String,
+    val weightMetric: String,
+    val imageUrl: String?,
+    val wikipediaUrl: String?,
+    val hypoallergenic: Boolean,
+    val indoor: Boolean,
+    val lap: Boolean,
+    val affectionLevel: Int,
+    val childFriendly: Int,
+    val dogFriendly: Int,
+    val energyLevel: Int,
+    val grooming: Int,
+    val intelligence: Int,
+    val socialNeeds: Int,
+    val vocalisation: Int,
+    val sheddingLevel: Int,
+    val hairless: Boolean,
+    val rex: Boolean,
+)
