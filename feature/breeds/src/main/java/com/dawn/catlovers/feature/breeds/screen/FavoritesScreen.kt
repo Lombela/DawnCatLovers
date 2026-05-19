@@ -21,6 +21,7 @@ fun FavoritesRoute(
     onOpenBrowse: () -> Unit,
     onOpenBreed: (String) -> Unit,
     onOpenFilters: () -> Unit,
+    onOpenProfile: () -> Unit,
     viewModel: FavoritesViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -29,6 +30,7 @@ fun FavoritesRoute(
         onOpenBrowse = onOpenBrowse,
         onOpenBreed = onOpenBreed,
         onOpenFilters = onOpenFilters,
+        onOpenProfile = onOpenProfile,
         onToggleFavorite = viewModel::toggleFavorite,
     )
 }
@@ -39,6 +41,7 @@ private fun FavoritesScreen(
     onOpenBrowse: () -> Unit,
     onOpenBreed: (String) -> Unit,
     onOpenFilters: () -> Unit,
+    onOpenProfile: () -> Unit,
     onToggleFavorite: (CatBreed) -> Unit,
 ) {
     Scaffold(
@@ -47,6 +50,7 @@ private fun FavoritesScreen(
             BottomNavigationBar(
                 selectedDestination = BottomNavDestination.Favorites,
                 onBrowseClick = onOpenBrowse,
+                onProfileClick = onOpenProfile,
             )
         },
     ) { padding ->

@@ -14,6 +14,8 @@ object CatLoversColors {
     val StTropaz = Color(0xFF2A5885)
     val TropicalBlue = Color(0xFFC7E2F6)
     val Midnight = Color(0xFF002241)
+    val Cloudy = Color(0xFFABA39C)
+    val FlushMahogany = Color(0xFFC53637)
     val Skeptic = Color(0xFFCCEAD8)
     val BottleGreen = Color(0xFF052B1E)
     val SelectedChip = Color(0xFFEFE3D3)

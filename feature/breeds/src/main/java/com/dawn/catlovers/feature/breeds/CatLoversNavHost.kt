@@ -12,14 +12,23 @@ import com.dawn.catlovers.feature.breeds.screen.BrowseRoute
 import com.dawn.catlovers.feature.breeds.screen.DetailsRoute
 import com.dawn.catlovers.feature.breeds.screen.FavoritesRoute
 import com.dawn.catlovers.feature.breeds.screen.FiltersRoute
+import com.dawn.catlovers.feature.breeds.screen.ProfileRoute
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun CatLoversNavHost() {
     val navController = rememberNavController()
-    val openFavorites = {
-        navController.navigate(BreedRoutes.Favorites) {
+    val openTopLevelDestination: (String) -> Unit = { route ->
+        navController.navigate(route) {
             popUpTo(BreedRoutes.Browse) { inclusive = false }
+            launchSingleTop = true
+        }
+    }
+    val openBrowse = { openTopLevelDestination(BreedRoutes.Browse) }
+    val openFavorites = { openTopLevelDestination(BreedRoutes.Favorites) }
+    val openProfile = { openTopLevelDestination(BreedRoutes.Profile) }
+    val openFilters = {
+        navController.navigate(BreedRoutes.Filters) {
             launchSingleTop = true
         }
     }
@@ -34,20 +43,24 @@ fun CatLoversNavHost() {
                     sharedTransitionScope = this@SharedTransitionLayout,
                     animatedVisibilityScope = this@composable,
                     onOpenBreed = { navController.navigate(BreedRoutes.details(it)) },
-                    onOpenFilters = { navController.navigate(BreedRoutes.Filters) },
+                    onOpenFilters = openFilters,
                     onOpenFavorites = openFavorites,
+                    onOpenProfile = openProfile,
                 )
             }
             composable(BreedRoutes.Favorites) {
                 FavoritesRoute(
-                    onOpenBrowse = {
-                        navController.navigate(BreedRoutes.Browse) {
-                            popUpTo(BreedRoutes.Browse) { inclusive = false }
-                            launchSingleTop = true
-                        }
-                    },
+                    onOpenBrowse = openBrowse,
                     onOpenBreed = { navController.navigate(BreedRoutes.details(it)) },
-                    onOpenFilters = { navController.navigate(BreedRoutes.Filters) },
+                    onOpenFilters = openFilters,
+                    onOpenProfile = openProfile,
+                )
+            }
+            composable(BreedRoutes.Profile) {
+                ProfileRoute(
+                    onOpenBrowse = openBrowse,
+                    onOpenFavorites = openFavorites,
+                    onOpenFilters = openFilters,
                 )
             }
             composable(
@@ -65,6 +78,7 @@ fun CatLoversNavHost() {
                     onBack = { navController.popBackStack() },
                     onOpenBreed = { navController.navigate(BreedRoutes.details(it)) },
                     onOpenFavorites = openFavorites,
+                    onOpenProfile = openProfile,
                 )
             }
         }

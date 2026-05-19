@@ -3,6 +3,7 @@ package com.dawn.catlovers.feature.breeds
 object BreedRoutes {
     const val Browse = "browse"
     const val Favorites = "favorites"
+    const val Profile = "profile"
     const val Filters = "filters"
     const val Details = "details/{breedId}"
 

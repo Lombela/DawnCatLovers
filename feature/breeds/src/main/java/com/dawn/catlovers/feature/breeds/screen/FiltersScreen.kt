@@ -27,6 +27,7 @@ fun FiltersRoute(
     onBack: () -> Unit,
     onOpenBreed: (String) -> Unit,
     onOpenFavorites: () -> Unit,
+    onOpenProfile: () -> Unit,
     viewModel: FiltersViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -35,6 +36,7 @@ fun FiltersRoute(
         onBack = onBack,
         onOpenBreed = onOpenBreed,
         onOpenFavorites = onOpenFavorites,
+        onOpenProfile = onOpenProfile,
         onQueryChange = viewModel::setQuery,
         onSetCoatLength = viewModel::setCoatLength,
         onSetHypoallergenic = viewModel::setHypoallergenic,
@@ -51,6 +53,7 @@ private fun FiltersScreen(
     onBack: () -> Unit,
     onOpenBreed: (String) -> Unit,
     onOpenFavorites: () -> Unit,
+    onOpenProfile: () -> Unit,
     onQueryChange: (String) -> Unit,
     onSetCoatLength: (CoatLength?) -> Unit,
     onSetHypoallergenic: (Boolean) -> Unit,
@@ -65,6 +68,7 @@ private fun FiltersScreen(
             BottomNavigationBar(
                 selectedDestination = BottomNavDestination.Browse,
                 onFavoritesClick = onOpenFavorites,
+                onProfileClick = onOpenProfile,
             )
         },
         floatingActionButton = {

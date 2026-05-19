@@ -28,6 +28,7 @@ fun BrowseRoute(
     onOpenBreed: (String) -> Unit,
     onOpenFilters: () -> Unit,
     onOpenFavorites: () -> Unit,
+    onOpenProfile: () -> Unit,
     viewModel: BrowseViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -38,6 +39,7 @@ fun BrowseRoute(
         onOpenBreed = onOpenBreed,
         onOpenFilters = onOpenFilters,
         onOpenFavorites = onOpenFavorites,
+        onOpenProfile = onOpenProfile,
         onSelectFilter = viewModel::selectFilter,
         onToggleFavorite = viewModel::toggleFavorite,
         onRefresh = viewModel::refresh,
@@ -53,6 +55,7 @@ private fun BrowseScreen(
     onOpenBreed: (String) -> Unit,
     onOpenFilters: () -> Unit,
     onOpenFavorites: () -> Unit,
+    onOpenProfile: () -> Unit,
     onSelectFilter: (QuickFilter) -> Unit,
     onToggleFavorite: (CatBreed) -> Unit,
     onRefresh: () -> Unit,
@@ -64,6 +67,7 @@ private fun BrowseScreen(
             BottomNavigationBar(
                 selectedDestination = BottomNavDestination.Browse,
                 onFavoritesClick = onOpenFavorites,
+                onProfileClick = onOpenProfile,
             )
         },
         floatingActionButton = {
