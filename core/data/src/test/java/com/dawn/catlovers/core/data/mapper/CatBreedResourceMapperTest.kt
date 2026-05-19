@@ -1,11 +1,11 @@
 package com.dawn.catlovers.core.data.mapper
 
 import com.dawn.catlovers.core.model.CoatLength
-import com.dawn.catlovers.core.network.NetworkCatBreed
+import com.dawn.catlovers.core.network.CatBreedResource
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class NetworkCatBreedMapperTest {
+class CatBreedResourceMapperTest {
     @Test
     fun `maps network breed and clamps trait scores`() {
         val breed = networkBreed(
@@ -38,7 +38,7 @@ class NetworkCatBreedMapperTest {
         energyLevel: Int = 5,
         grooming: Int = 1,
         hairless: Boolean = false,
-    ) = NetworkCatBreed(
+    ) = CatBreedResource(
         id = id,
         name = name,
         origin = "United States",

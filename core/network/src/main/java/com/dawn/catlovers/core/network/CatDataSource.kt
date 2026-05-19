@@ -4,7 +4,7 @@ class CatDataSource(
     private val service: TheCatApiService,
     private val apiKey: String? = null,
 ) {
-    suspend fun fetchBreeds(page: Int = 0, limit: Int = 100): List<NetworkCatBreed> =
+    suspend fun fetchBreeds(page: Int = 0, limit: Int = 100): List<CatBreedResource> =
         service.getBreeds(
             apiKey = apiKey?.takeIf { it.isNotBlank() },
             page = page,
@@ -12,11 +12,11 @@ class CatDataSource(
         ).mapNotNull { it.asNetworkModel() }
 }
 
-private fun CatBreedResponse.asNetworkModel(): NetworkCatBreed? {
+private fun CatBreedResponse.asNetworkModel(): CatBreedResource? {
     val id = id?.takeIf { it.isNotBlank() } ?: return null
     val name = name?.takeIf { it.isNotBlank() } ?: return null
 
-    return NetworkCatBreed(
+    return CatBreedResource(
         id = id,
         name = name,
         origin = origin.orEmpty(),

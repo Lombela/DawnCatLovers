@@ -2,9 +2,9 @@ package com.dawn.catlovers.core.data.mapper
 
 import com.dawn.catlovers.core.model.CatBreed
 import com.dawn.catlovers.core.model.CoatLength
-import com.dawn.catlovers.core.network.NetworkCatBreed
+import com.dawn.catlovers.core.network.CatBreedResource
 
-fun NetworkCatBreed.asExternalModel(): CatBreed = CatBreed(
+fun CatBreedResource.asExternalModel(): CatBreed = CatBreed(
     id = id,
     name = name,
     origin = origin,

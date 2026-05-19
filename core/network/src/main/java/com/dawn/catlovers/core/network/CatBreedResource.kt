@@ -1,6 +1,6 @@
 package com.dawn.catlovers.core.network
 
-data class NetworkCatBreed(
+data class CatBreedResource(
     val id: String,
     val name: String,
     val origin: String,
