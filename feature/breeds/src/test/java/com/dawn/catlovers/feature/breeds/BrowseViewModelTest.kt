@@ -76,5 +76,6 @@ class BrowseViewModelTest {
         observeBreeds = ObserveBreedsUseCase(repository),
         refreshBreeds = RefreshBreedsUseCase(repository),
         setFavorite = SetFavoriteUseCase(repository),
+        dispatchers = mainDispatcherRule.testDispatchers(),
     )
 }

@@ -2,6 +2,7 @@ package com.dawn.catlovers.feature.breeds.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dawn.catlovers.core.domain.CoroutineDispatchers
 import com.dawn.catlovers.core.domain.usecase.ObserveBreedsUseCase
 import com.dawn.catlovers.core.domain.usecase.RefreshBreedsUseCase
 import com.dawn.catlovers.core.domain.usecase.SetFavoriteUseCase
@@ -17,6 +18,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,6 +29,7 @@ class BrowseViewModel @Inject constructor(
     private val observeBreeds: ObserveBreedsUseCase,
     private val refreshBreeds: RefreshBreedsUseCase,
     private val setFavorite: SetFavoriteUseCase,
+    private val dispatchers: CoroutineDispatchers,
 ) : ViewModel() {
     private val selectedFilter = MutableStateFlow(QuickFilter.All)
     private val refreshing = MutableStateFlow(false)
@@ -47,11 +50,13 @@ class BrowseViewModel @Inject constructor(
             isRefreshing = refreshing,
             syncMessage = syncMessage,
         )
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.Companion.WhileSubscribed(5_000),
-        initialValue = BrowseUiState(),
-    )
+    }
+        .flowOn(dispatchers.default)
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+            initialValue = BrowseUiState(),
+        )
 
     init {
         refresh()

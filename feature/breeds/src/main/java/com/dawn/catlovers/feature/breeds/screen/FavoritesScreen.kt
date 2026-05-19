@@ -13,52 +13,41 @@ import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
 import com.dawn.catlovers.feature.breeds.component.BottomNavDestination
 import com.dawn.catlovers.feature.breeds.component.BottomNavigationBar
-import com.dawn.catlovers.feature.breeds.uistate.BrowseUiState
-import com.dawn.catlovers.feature.breeds.uistate.QuickFilter
-import com.dawn.catlovers.feature.breeds.viewmodel.BrowseViewModel
+import com.dawn.catlovers.feature.breeds.uistate.FavoritesUiState
+import com.dawn.catlovers.feature.breeds.viewmodel.FavoritesViewModel
 
 @Composable
-fun BrowseRoute(
+fun FavoritesRoute(
+    onOpenBrowse: () -> Unit,
     onOpenBreed: (String) -> Unit,
     onOpenFilters: () -> Unit,
-    onOpenFavorites: () -> Unit,
-    viewModel: BrowseViewModel = hiltViewModel(),
+    viewModel: FavoritesViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    BrowseScreen(
+    FavoritesScreen(
         uiState = uiState,
+        onOpenBrowse = onOpenBrowse,
         onOpenBreed = onOpenBreed,
         onOpenFilters = onOpenFilters,
-        onOpenFavorites = onOpenFavorites,
-        onSelectFilter = viewModel::selectFilter,
         onToggleFavorite = viewModel::toggleFavorite,
-        onRefresh = viewModel::refresh,
     )
 }
 
 @Composable
-private fun BrowseScreen(
-    uiState: BrowseUiState,
+private fun FavoritesScreen(
+    uiState: FavoritesUiState,
+    onOpenBrowse: () -> Unit,
     onOpenBreed: (String) -> Unit,
     onOpenFilters: () -> Unit,
-    onOpenFavorites: () -> Unit,
-    onSelectFilter: (QuickFilter) -> Unit,
     onToggleFavorite: (CatBreed) -> Unit,
-    onRefresh: () -> Unit,
 ) {
-    val heroBreed = uiState.heroBreed
     Scaffold(
         containerColor = CatLoversColors.Linen,
         bottomBar = {
             BottomNavigationBar(
-                selectedDestination = BottomNavDestination.Browse,
-                onFavoritesClick = onOpenFavorites,
+                selectedDestination = BottomNavDestination.Favorites,
+                onBrowseClick = onOpenBrowse,
             )
-        },
-        floatingActionButton = {
-            if (heroBreed != null) {
-                BrowseSurpriseButton(onClick = { onOpenBreed(heroBreed.id) })
-            }
         },
     ) { padding ->
         Column(
@@ -66,17 +55,17 @@ private fun BrowseScreen(
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            BrowseHeader(
-                isRefreshing = uiState.isRefreshing,
+            FavoritesHeader(
+                favoriteCount = uiState.favoriteCount,
                 onOpenFilters = onOpenFilters,
-                onRefresh = onRefresh,
+                onSearch = onOpenFilters,
+                onShare = {},
             )
-            BrowseContent(
+            FavoritesContent(
                 uiState = uiState,
+                onOpenBrowse = onOpenBrowse,
                 onOpenBreed = onOpenBreed,
-                onSelectFilter = onSelectFilter,
                 onToggleFavorite = onToggleFavorite,
-                onRefresh = onRefresh,
             )
         }
     }

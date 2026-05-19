@@ -17,6 +17,7 @@ import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
 import com.dawn.catlovers.core.model.CoatLength
 import com.dawn.catlovers.core.model.Lifestyle
+import com.dawn.catlovers.feature.breeds.component.BottomNavDestination
 import com.dawn.catlovers.feature.breeds.component.BottomNavigationBar
 import com.dawn.catlovers.feature.breeds.uistate.FiltersUiState
 import com.dawn.catlovers.feature.breeds.viewmodel.FiltersViewModel
@@ -25,6 +26,7 @@ import com.dawn.catlovers.feature.breeds.viewmodel.FiltersViewModel
 fun FiltersRoute(
     onBack: () -> Unit,
     onOpenBreed: (String) -> Unit,
+    onOpenFavorites: () -> Unit,
     viewModel: FiltersViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -32,6 +34,7 @@ fun FiltersRoute(
         uiState = uiState,
         onBack = onBack,
         onOpenBreed = onOpenBreed,
+        onOpenFavorites = onOpenFavorites,
         onQueryChange = viewModel::setQuery,
         onSetCoatLength = viewModel::setCoatLength,
         onSetHypoallergenic = viewModel::setHypoallergenic,
@@ -47,6 +50,7 @@ private fun FiltersScreen(
     uiState: FiltersUiState,
     onBack: () -> Unit,
     onOpenBreed: (String) -> Unit,
+    onOpenFavorites: () -> Unit,
     onQueryChange: (String) -> Unit,
     onSetCoatLength: (CoatLength?) -> Unit,
     onSetHypoallergenic: (Boolean) -> Unit,
@@ -57,7 +61,12 @@ private fun FiltersScreen(
 ) {
     Scaffold(
         containerColor = CatLoversColors.Linen,
-        bottomBar = { BottomNavigationBar() },
+        bottomBar = {
+            BottomNavigationBar(
+                selectedDestination = BottomNavDestination.Browse,
+                onFavoritesClick = onOpenFavorites,
+            )
+        },
         floatingActionButton = {
             ShowMatchesButton(
                 count = uiState.matches.size,

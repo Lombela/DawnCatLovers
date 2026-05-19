@@ -81,5 +81,6 @@ class FiltersViewModelTest {
 
     private fun filtersViewModel(repository: FakeCatBreedsRepository) = FiltersViewModel(
         observeBreeds = ObserveBreedsUseCase(repository),
+        dispatchers = mainDispatcherRule.testDispatchers(),
     )
 }

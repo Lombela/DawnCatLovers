@@ -49,5 +49,6 @@ class DetailsViewModelTest {
         savedStateHandle = SavedStateHandle(mapOf("breedId" to breedId)),
         observeBreed = ObserveBreedUseCase(repository),
         setFavorite = SetFavoriteUseCase(repository),
+        dispatchers = mainDispatcherRule.testDispatchers(),
     )
 }

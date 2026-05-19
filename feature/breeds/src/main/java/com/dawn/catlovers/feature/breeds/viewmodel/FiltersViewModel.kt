@@ -2,6 +2,7 @@ package com.dawn.catlovers.feature.breeds.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dawn.catlovers.core.domain.CoroutineDispatchers
 import com.dawn.catlovers.core.domain.usecase.ObserveBreedsUseCase
 import com.dawn.catlovers.core.model.BreedFilters
 import com.dawn.catlovers.core.model.CoatLength
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
@@ -23,6 +25,7 @@ import javax.inject.Inject
 @OptIn(ExperimentalCoroutinesApi::class)
 class FiltersViewModel @Inject constructor(
     private val observeBreeds: ObserveBreedsUseCase,
+    private val dispatchers: CoroutineDispatchers,
 ) : ViewModel() {
     private val filters = MutableStateFlow(DefaultFilters)
 
@@ -48,6 +51,7 @@ class FiltersViewModel @Inject constructor(
                 .sorted(),
         )
     }
+        .flowOn(dispatchers.default)
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Companion.WhileSubscribed(5_000),

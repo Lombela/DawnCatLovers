@@ -6,6 +6,7 @@ import com.dawn.catlovers.BuildConfig
 import com.dawn.catlovers.core.data.CatBreedsRepositoryImpl
 import com.dawn.catlovers.core.database.CatBreedDao
 import com.dawn.catlovers.core.database.CatLoversDatabase
+import com.dawn.catlovers.core.domain.CoroutineDispatchers
 import com.dawn.catlovers.core.domain.repository.CatBreedsRepository
 import com.dawn.catlovers.core.network.CatDataSource
 import com.dawn.catlovers.core.network.TheCatApiService
@@ -37,6 +38,10 @@ object AppModule {
 
     @Provides
     fun provideCatBreedDao(database: CatLoversDatabase): CatBreedDao = database.catBreedDao()
+
+    @Provides
+    @Singleton
+    fun provideCoroutineDispatchers(): CoroutineDispatchers = CoroutineDispatchers()
 
     @Provides
     @Singleton
@@ -80,8 +85,10 @@ object AppModule {
     fun provideCatBreedsRepository(
         dao: CatBreedDao,
         apiClient: CatDataSource,
+        dispatchers: CoroutineDispatchers,
     ): CatBreedsRepository = CatBreedsRepositoryImpl(
         dao = dao,
         dataSource = apiClient,
+        dispatchers = dispatchers,
     )
 }
