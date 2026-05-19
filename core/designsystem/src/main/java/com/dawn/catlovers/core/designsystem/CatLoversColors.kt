@@ -8,6 +8,7 @@ object CatLoversColors {
     val PearlBush = Color(0xFFF0EAE4)
     val Swirl = Color(0xFFD5D0CA)
     val Zeus = Color(0xFF1F1915)
+    val Cedar = Color(0xFF3E2815)
     val SoyaBean = Color(0xFF5E5650)
     val Eternity = Color(0xFF0F0A06)
     val StTropaz = Color(0xFF2A5885)

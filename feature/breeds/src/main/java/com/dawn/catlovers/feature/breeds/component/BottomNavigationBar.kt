@@ -50,14 +50,15 @@ internal fun BottomNavigationBar(modifier: Modifier = Modifier) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 12.dp, vertical = 7.dp),
-                horizontalArrangement = Arrangement.SpaceAround,
+                    .height(59.dp)
+                    .padding(top = 11.dp, bottom = 7.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                BottomNavItem(icon = Icons.Rounded.Home, label = "Browse", selected = true)
-                BottomNavItem(icon = Icons.Rounded.FavoriteBorder, label = "Favorites")
-                BottomNavItem(icon = PawIcon, label = "Quiz")
-                BottomNavItem(icon = Icons.Rounded.LocationOn, label = "Profile")
+                BottomNavItem(icon = Icons.Rounded.Home, label = "Browse", selected = true, modifier = Modifier.weight(1f))
+                BottomNavItem(icon = Icons.Rounded.FavoriteBorder, label = "Favorites", modifier = Modifier.weight(1f))
+                BottomNavItem(icon = PawIcon, label = "Quiz", modifier = Modifier.weight(1f))
+                BottomNavItem(icon = Icons.Rounded.LocationOn, label = "Profile", modifier = Modifier.weight(1f))
             }
         }
     }
@@ -67,16 +68,18 @@ internal fun BottomNavigationBar(modifier: Modifier = Modifier) {
 private fun BottomNavItem(
     icon: ImageVector,
     label: String,
+    modifier: Modifier = Modifier,
     selected: Boolean = false,
 ) {
     Column(
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(3.dp),
     ) {
         Box(
             modifier = Modifier
-                .width(56.dp)
-                .height(28.dp)
+                .width(53.dp)
+                .height(27.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .background(if (selected) CatLoversColors.SelectedChip else Color.Transparent),
             contentAlignment = Alignment.Center,
