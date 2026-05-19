@@ -11,8 +11,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.uistate.BrowseUiState
 import com.dawn.catlovers.feature.breeds.uistate.QuickFilter
 
@@ -61,7 +63,8 @@ internal fun BrowseContent(
         if (uiState.breeds.isEmpty()) {
             item {
                 EmptyBrowseState(
-                    message = uiState.syncMessage ?: "No breeds match the current filter",
+                    message = uiState.syncMessageResId?.let { stringResource(it) }
+                        ?: stringResource(R.string.browse_empty_filter),
                     onRefresh = onRefresh,
                     modifier = Modifier.padding(horizontal = 13.dp),
                 )

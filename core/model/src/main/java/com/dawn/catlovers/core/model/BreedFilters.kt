@@ -9,25 +9,23 @@ data class BreedFilters(
     val lifestyles: Set<Lifestyle> = emptySet(),
 ) {
     val activeCount: Int
-        get() = activeLabels.size
-
-    val activeLabels: List<String>
-        get() = buildList {
-            if (coatLength != null) add("${coatLength.label} coat")
-            if (hypoallergenicOnly) add("Hypoallergenic")
-            if (minEnergy != null) add("Energy ${minEnergy}+")
-            if (!origin.isNullOrBlank()) add(origin)
-            addAll(lifestyles.map { it.label })
+        get() {
+            var count = lifestyles.size
+            if (coatLength != null) count++
+            if (hypoallergenicOnly) count++
+            if (minEnergy != null) count++
+            if (!origin.isNullOrBlank()) count++
+            return count
         }
 
     fun matches(breed: CatBreed): Boolean {
-        val normalizedQuery = query.trim()
+        val normalizedQuery = query.normalizedSearchText()
         val matchesQuery = normalizedQuery.isBlank() ||
-            breed.name.contains(normalizedQuery, ignoreCase = true) ||
-            breed.origin.contains(normalizedQuery, ignoreCase = true) ||
-            breed.coatLength.label.contains(normalizedQuery, ignoreCase = true) ||
-            breed.temperament.any { it.contains(normalizedQuery, ignoreCase = true) } ||
-            breed.description.contains(normalizedQuery, ignoreCase = true)
+            breed.name.normalizedSearchText().contains(normalizedQuery) ||
+            breed.origin.normalizedSearchText().contains(normalizedQuery) ||
+            breed.coatLength.name.normalizedSearchText().contains(normalizedQuery) ||
+            breed.temperament.any { it.normalizedSearchText().contains(normalizedQuery) } ||
+            breed.description.normalizedSearchText().contains(normalizedQuery)
 
         val matchesCoat = coatLength == null || breed.coatLength == coatLength
         val matchesOrigin = origin.isNullOrBlank() || breed.origin.equals(origin, ignoreCase = true)
@@ -51,3 +49,8 @@ data class BreedFilters(
         Lifestyle.Single -> socialNeeds <= 3 || lap
     }
 }
+
+private fun String.normalizedSearchText(): String = replace(Regex("(?<=[a-z])(?=[A-Z])"), " ")
+    .replace(Regex("[^A-Za-z0-9]+"), " ")
+    .trim()
+    .lowercase()

@@ -27,10 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
+import com.dawn.catlovers.feature.breeds.R
 
 @Composable
 internal fun DetailSaveButton(
@@ -55,7 +57,11 @@ internal fun DetailSaveButton(
         )
         Spacer(Modifier.width(7.dp))
         Text(
-            text = if (isFavorite) "Saved to favorites" else "Save to favorites",
+            text = if (isFavorite) {
+                stringResource(R.string.details_saved_to_favorites)
+            } else {
+                stringResource(R.string.details_save_to_favorites)
+            },
             style = MaterialTheme.typography.labelMedium.copy(fontSize = 12.sp, lineHeight = 12.sp),
         )
     }

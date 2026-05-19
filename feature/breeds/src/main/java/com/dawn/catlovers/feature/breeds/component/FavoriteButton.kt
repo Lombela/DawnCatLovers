@@ -5,8 +5,10 @@ import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.dawn.catlovers.feature.breeds.R
 
 @Composable
 internal fun FavoriteButton(
@@ -19,7 +21,11 @@ internal fun FavoriteButton(
 ) {
     IconCircleButton(
         imageVector = if (isFavorite) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
-        contentDescription = if (isFavorite) "Remove favorite" else "Add favorite",
+        contentDescription = if (isFavorite) {
+            stringResource(R.string.content_description_remove_favorite)
+        } else {
+            stringResource(R.string.content_description_add_favorite)
+        },
         onClick = onClick,
         selected = isFavorite,
         dark = dark,

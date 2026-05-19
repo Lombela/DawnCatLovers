@@ -11,7 +11,6 @@ data class FiltersUiState(
 )
 
 internal val DefaultFilters = BreedFilters(
-    query = "short",
     coatLength = CoatLength.Short,
     hypoallergenicOnly = true,
     minEnergy = 4,

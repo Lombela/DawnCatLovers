@@ -9,9 +9,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.FilterSlidersIcon
 import com.dawn.catlovers.feature.breeds.component.IconCircleButton
 
@@ -27,7 +29,7 @@ internal fun ProfileHeader(
             .padding(start = 7.dp, end = 7.dp, top = 7.dp),
     ) {
         Text(
-            text = "Profile",
+            text = stringResource(R.string.profile_title),
             color = CatLoversColors.Zeus,
             style = MaterialTheme.typography.titleMedium.copy(
                 fontSize = 16.sp,
@@ -37,7 +39,7 @@ internal fun ProfileHeader(
         )
         IconCircleButton(
             imageVector = FilterSlidersIcon,
-            contentDescription = "Open filters",
+            contentDescription = stringResource(R.string.content_description_open_filters),
             onClick = onOpenFilters,
             buttonSize = 33.dp,
             iconSize = 20.dp,

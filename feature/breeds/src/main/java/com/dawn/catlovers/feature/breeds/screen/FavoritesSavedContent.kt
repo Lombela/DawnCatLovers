@@ -24,11 +24,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.uistate.FavoritesUiState
 
 @Composable
@@ -99,11 +102,11 @@ private fun FavoritesControls(modifier: Modifier = Modifier) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             SegmentLabel(
-                text = "Saved",
+                text = stringResource(R.string.favorites_segment_saved),
                 selected = true,
             )
             SegmentLabel(
-                text = "Recently viewed",
+                text = stringResource(R.string.favorites_segment_recently_viewed),
                 selected = false,
             )
         }
@@ -147,7 +150,7 @@ private fun SortChip() {
             horizontalArrangement = Arrangement.spacedBy(6.dp),
         ) {
             Text(
-                text = "Sort: Name",
+                text = stringResource(R.string.favorites_sort_name),
                 color = CatLoversColors.Zeus,
                 style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.5.sp, lineHeight = 12.sp),
             )
@@ -175,12 +178,12 @@ private fun AlsoSavedHeader(
         verticalAlignment = Alignment.Top,
     ) {
         Text(
-            text = "Also saved",
+            text = stringResource(R.string.favorites_also_saved),
             color = CatLoversColors.Zeus,
             style = MaterialTheme.typography.titleMedium.copy(fontSize = 16.sp, lineHeight = 22.sp),
         )
         Text(
-            text = "$count ${if (count == 1) "breed" else "breeds"}",
+            text = pluralStringResource(R.plurals.breed_count, count, count),
             color = CatLoversColors.SoyaBean,
             style = MaterialTheme.typography.labelMedium.copy(
                 fontSize = 11.sp,
@@ -223,12 +226,12 @@ private fun CompareShortlistBanner(modifier: Modifier = Modifier) {
                 verticalArrangement = Arrangement.spacedBy(2.dp),
             ) {
                 Text(
-                    text = "Compare your shortlist",
+                    text = stringResource(R.string.favorites_compare_shortlist),
                     color = CatLoversColors.BottleGreen,
                     style = MaterialTheme.typography.labelMedium.copy(fontSize = 12.5.sp, lineHeight = 18.sp),
                 )
                 Text(
-                    text = "Side-by-side traits, lifestyle, and grooming.",
+                    text = stringResource(R.string.favorites_compare_shortlist_body),
                     color = CatLoversColors.BottleGreen.copy(alpha = 0.85f),
                     style = MaterialTheme.typography.labelMedium.copy(
                         fontSize = 10.5.sp,

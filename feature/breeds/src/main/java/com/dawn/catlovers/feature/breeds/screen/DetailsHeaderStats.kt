@@ -14,12 +14,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
+import com.dawn.catlovers.feature.breeds.labelText
 import com.dawn.catlovers.feature.breeds.component.CountryBadge
 
 @Composable
@@ -69,9 +72,21 @@ internal fun DetailStatsRow(breed: CatBreed) {
             .padding(start = 13.dp, end = 13.dp, top = 18.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        DetailStatCard("Lifespan", "${breed.lifeSpan} yrs", modifier = Modifier.weight(1f))
-        DetailStatCard("Weight", "${breed.weightMetric} kg", modifier = Modifier.weight(1f))
-        DetailStatCard("Coat", breed.coatLength.label, modifier = Modifier.weight(1f))
+        DetailStatCard(
+            label = stringResource(R.string.details_stat_lifespan),
+            value = stringResource(R.string.details_stat_lifespan_value, breed.lifeSpan),
+            modifier = Modifier.weight(1f),
+        )
+        DetailStatCard(
+            label = stringResource(R.string.details_stat_weight),
+            value = stringResource(R.string.details_stat_weight_value, breed.weightMetric),
+            modifier = Modifier.weight(1f),
+        )
+        DetailStatCard(
+            label = stringResource(R.string.details_stat_coat),
+            value = breed.coatLength.labelText(),
+            modifier = Modifier.weight(1f),
+        )
     }
 }
 

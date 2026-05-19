@@ -44,7 +44,7 @@ class BrowseViewModelTest {
         assertEquals(1, repository.refreshCalls)
         assertEquals(listOf("beng"), viewModel.uiState.value.breeds.map { it.id })
         assertEquals(QuickFilter.Hypoallergenic, viewModel.uiState.value.selectedFilter)
-        assertNull(viewModel.uiState.value.syncMessage)
+        assertNull(viewModel.uiState.value.syncMessageResId)
     }
 
     @Test
@@ -58,7 +58,7 @@ class BrowseViewModelTest {
         advanceUntilIdle()
 
         assertEquals(listOf("beng"), viewModel.uiState.value.breeds.map { it.id })
-        assertEquals("Could not update breeds. Showing saved data when available.", viewModel.uiState.value.syncMessage)
+        assertEquals(R.string.browse_sync_failed, viewModel.uiState.value.syncMessageResId)
     }
 
     @Test

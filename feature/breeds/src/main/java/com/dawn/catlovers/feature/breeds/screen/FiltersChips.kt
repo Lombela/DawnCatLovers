@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -34,6 +35,8 @@ import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.BreedFilters
 import com.dawn.catlovers.core.model.CoatLength
 import com.dawn.catlovers.core.model.Lifestyle
+import com.dawn.catlovers.feature.breeds.R
+import com.dawn.catlovers.feature.breeds.labelText
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -55,7 +58,7 @@ internal fun ActiveFiltersSection(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                text = "Filters".uppercase(),
+                text = stringResource(R.string.filters_title).uppercase(),
                 color = CatLoversColors.SoyaBean,
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontSize = 10.sp,
@@ -64,7 +67,11 @@ internal fun ActiveFiltersSection(
                 ),
             )
             Text(
-                text = if (filters.activeCount > 0) "Clear all (${filters.activeCount})" else "Clear all",
+                text = if (filters.activeCount > 0) {
+                    stringResource(R.string.active_filter_clear_all_count, filters.activeCount)
+                } else {
+                    stringResource(R.string.active_filter_clear_all)
+                },
                 color = CatLoversColors.StTropaz,
                 style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.sp, lineHeight = 11.sp),
                 modifier = Modifier.clickable(onClick = onClearAll),
@@ -79,21 +86,21 @@ internal fun ActiveFiltersSection(
         ) {
             filters.coatLength?.let { coat ->
                 FilterChip(
-                    label = "${coat.label} coat",
+                    label = stringResource(R.string.active_filter_coat, coat.labelText()),
                     selected = true,
                     onClick = { onSetCoatLength(null) },
                 )
             }
             if (filters.hypoallergenicOnly) {
                 FilterChip(
-                    label = "Hypoallergenic",
+                    label = stringResource(R.string.active_filter_hypoallergenic),
                     selected = true,
                     onClick = { onSetHypoallergenic(false) },
                 )
             }
             filters.minEnergy?.let { energy ->
                 FilterChip(
-                    label = "Energy $energy+",
+                    label = stringResource(R.string.active_filter_energy, energy),
                     selected = true,
                     onClick = { onSetMinEnergy(null) },
                 )
@@ -107,13 +114,13 @@ internal fun ActiveFiltersSection(
             }
             filters.lifestyles.forEach { lifestyle ->
                 FilterChip(
-                    label = lifestyle.label,
+                    label = lifestyle.labelText(),
                     selected = true,
                     onClick = { onToggleLifestyle(lifestyle) },
                 )
             }
             FilterChip(
-                label = "+ Add filter",
+                label = stringResource(R.string.add_filter),
                 selected = false,
                 showSelectedIcon = false,
                 onClick = { },

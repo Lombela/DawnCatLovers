@@ -28,11 +28,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
+import com.dawn.catlovers.feature.breeds.R
 
 @Composable
 internal fun SearchBar(
@@ -55,7 +57,7 @@ internal fun SearchBar(
     ) {
         CompactIconButton(
             imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-            contentDescription = "Back",
+            contentDescription = stringResource(R.string.content_description_back),
             onClick = onBack,
         )
         BasicTextField(
@@ -83,7 +85,7 @@ internal fun SearchBar(
                                 modifier = Modifier.size(18.dp),
                             )
                             Text(
-                                text = "Search breeds",
+                                text = stringResource(R.string.content_description_search_breeds),
                                 color = CatLoversColors.SoyaBean,
                                 style = MaterialTheme.typography.bodyMedium.copy(
                                     fontSize = 13.5.sp,
@@ -98,12 +100,12 @@ internal fun SearchBar(
         )
         CompactIconButton(
             imageVector = VoiceSearchIcon,
-            contentDescription = "Voice search",
+            contentDescription = stringResource(R.string.content_description_voice_search),
             onClick = { },
         )
         CompactIconButton(
             imageVector = Icons.Rounded.Close,
-            contentDescription = "Clear search",
+            contentDescription = stringResource(R.string.content_description_clear_search),
             onClick = { onQueryChange("") },
         )
     }

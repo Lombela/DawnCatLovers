@@ -24,12 +24,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.BreedImage
 import com.dawn.catlovers.feature.breeds.component.CountryBadge
 
@@ -43,12 +46,12 @@ internal fun MatchesHeader(count: Int) {
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
-            text = "Matches",
+            text = stringResource(R.string.filters_matches),
             color = CatLoversColors.Zeus,
             style = MaterialTheme.typography.titleMedium.copy(fontSize = 16.sp, lineHeight = 20.sp),
         )
         Text(
-            text = "$count breeds",
+            text = pluralStringResource(R.plurals.breed_count, count, count),
             color = CatLoversColors.SoyaBean,
             style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.sp, lineHeight = 15.sp),
         )
@@ -126,7 +129,7 @@ internal fun ShowMatchesButton(
         modifier = Modifier.height(47.dp),
     ) {
         Text(
-            text = "Show",
+            text = stringResource(R.string.filters_show),
             style = MaterialTheme.typography.labelMedium.copy(fontSize = 12.sp, lineHeight = 12.sp),
         )
         Spacer(Modifier.width(7.dp))
@@ -136,7 +139,7 @@ internal fun ShowMatchesButton(
         )
         Spacer(Modifier.width(7.dp))
         Text(
-            text = "cats",
+            text = pluralStringResource(R.plurals.cat_count, count),
             style = MaterialTheme.typography.labelMedium.copy(fontSize = 12.sp, lineHeight = 12.sp),
         )
     }

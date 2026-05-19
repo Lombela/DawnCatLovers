@@ -19,12 +19,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 
 @Composable
 internal fun DetailAboutSection(breed: CatBreed) {
@@ -34,7 +36,7 @@ internal fun DetailAboutSection(breed: CatBreed) {
             .padding(start = 20.dp, end = 20.dp, top = 17.dp),
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        DetailSectionTitle(text = "About")
+        DetailSectionTitle(text = stringResource(R.string.details_about))
         Text(
             text = breed.description,
             color = CatLoversColors.SoyaBean,
@@ -69,7 +71,7 @@ internal fun WikipediaLink(breed: CatBreed) {
             verticalArrangement = Arrangement.spacedBy(1.dp),
         ) {
             Text(
-                text = "Learn more on Wikipedia",
+                text = stringResource(R.string.details_wikipedia_title),
                 color = CatLoversColors.BottleGreen,
                 style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.sp, lineHeight = 15.sp),
                 maxLines = 1,
@@ -89,7 +91,7 @@ internal fun WikipediaLink(breed: CatBreed) {
         }
         Icon(
             imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
-            contentDescription = "Open Wikipedia",
+            contentDescription = stringResource(R.string.content_description_open_wikipedia),
             tint = CatLoversColors.BottleGreen,
             modifier = Modifier.size(15.dp),
         )

@@ -29,10 +29,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
+import com.dawn.catlovers.feature.breeds.R
 
 @Composable
 internal fun BottomNavigationBar(
@@ -64,7 +66,7 @@ internal fun BottomNavigationBar(
             ) {
                 BottomNavItem(
                     icon = Icons.Rounded.Home,
-                    label = "Browse",
+                    label = stringResource(R.string.bottom_nav_browse),
                     selected = selectedDestination == BottomNavDestination.Browse,
                     onClick = onBrowseClick,
                     modifier = Modifier.weight(1f),
@@ -75,14 +77,14 @@ internal fun BottomNavigationBar(
                     } else {
                         Icons.Rounded.FavoriteBorder
                     },
-                    label = "Favorites",
+                    label = stringResource(R.string.bottom_nav_favorites),
                     selected = selectedDestination == BottomNavDestination.Favorites,
                     onClick = onFavoritesClick,
                     modifier = Modifier.weight(1f),
                 )
                 BottomNavItem(
                     icon = Icons.Rounded.LocationOn,
-                    label = "Profile",
+                    label = stringResource(R.string.bottom_nav_profile),
                     selected = selectedDestination == BottomNavDestination.Profile,
                     onClick = onProfileClick,
                     modifier = Modifier.weight(1f),

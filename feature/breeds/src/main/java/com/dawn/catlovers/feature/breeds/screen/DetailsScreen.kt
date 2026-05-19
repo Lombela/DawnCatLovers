@@ -13,11 +13,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.uistate.DetailsUiState
 import com.dawn.catlovers.feature.breeds.viewmodel.DetailsViewModel
 
@@ -68,7 +70,7 @@ private fun DetailsScreen(
                     .padding(padding),
                 contentAlignment = Alignment.Center,
             ) {
-                Text("Breed not found", color = CatLoversColors.SoyaBean)
+                Text(stringResource(R.string.details_breed_not_found), color = CatLoversColors.SoyaBean)
             }
         } else {
             BreedDetailsContent(

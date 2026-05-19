@@ -10,6 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -17,8 +18,10 @@ import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
 import com.dawn.catlovers.core.model.CoatLength
 import com.dawn.catlovers.core.model.Lifestyle
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.BottomNavDestination
 import com.dawn.catlovers.feature.breeds.component.BottomNavigationBar
+import com.dawn.catlovers.feature.breeds.labelText
 import com.dawn.catlovers.feature.breeds.uistate.FiltersUiState
 import com.dawn.catlovers.feature.breeds.viewmodel.FiltersViewModel
 
@@ -105,10 +108,10 @@ private fun FiltersScreen(
                     )
                 }
                 item {
-                    FilterSection(title = "Coat length") {
+                    FilterSection(title = stringResource(R.string.filters_section_coat_length)) {
                         CoatLength.entries.forEach { coat ->
                             FilterChip(
-                                label = coat.label,
+                                label = coat.labelText(),
                                 selected = uiState.filters.coatLength == coat,
                                 onClick = { onSetCoatLength(if (uiState.filters.coatLength == coat) null else coat) },
                             )
@@ -116,9 +119,9 @@ private fun FiltersScreen(
                     }
                 }
                 item {
-                    FilterSection(title = "Origin", contentHeight = 60.dp) {
+                    FilterSection(title = stringResource(R.string.filters_section_origin), contentHeight = 60.dp) {
                         FilterChip(
-                            label = "Any",
+                            label = stringResource(R.string.filters_any),
                             selected = uiState.filters.origin == null,
                             onClick = { onSetOrigin(null) },
                         )
@@ -132,10 +135,10 @@ private fun FiltersScreen(
                     }
                 }
                 item {
-                    FilterSection(title = "Lifestyle") {
+                    FilterSection(title = stringResource(R.string.filters_section_lifestyle)) {
                         Lifestyle.entries.forEach { lifestyle ->
                             FilterChip(
-                                label = lifestyle.label,
+                                label = lifestyle.labelText(),
                                 selected = lifestyle in uiState.filters.lifestyles,
                                 onClick = { onToggleLifestyle(lifestyle) },
                             )

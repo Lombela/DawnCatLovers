@@ -18,11 +18,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 
 @Composable
 internal fun DetailTemperamentSection(breed: CatBreed) {
@@ -32,7 +34,7 @@ internal fun DetailTemperamentSection(breed: CatBreed) {
             .padding(start = 13.dp, end = 13.dp, top = 20.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
-        DetailSectionTitle(text = "Temperament")
+        DetailSectionTitle(text = stringResource(R.string.details_temperament))
         FlowRow(
             modifier = Modifier.padding(horizontal = 7.dp),
             horizontalArrangement = Arrangement.spacedBy(7.dp),
@@ -74,15 +76,15 @@ internal fun DetailTraitsSection(breed: CatBreed) {
             .padding(start = 20.dp, end = 20.dp, top = 20.dp),
         verticalArrangement = Arrangement.spacedBy(7.dp),
     ) {
-        DetailSectionTitle(text = "Traits")
+        DetailSectionTitle(text = stringResource(R.string.details_traits))
         Column {
-            DetailTraitBar("Affection", breed.affectionLevel)
-            DetailTraitBar("Energy", breed.energyLevel)
-            DetailTraitBar("Intelligence", breed.intelligence)
-            DetailTraitBar("Child-friendly", breed.childFriendly)
-            DetailTraitBar("Social", breed.socialNeeds)
-            DetailTraitBar("Grooming", breed.grooming)
-            DetailTraitBar("Vocalisation", breed.vocalisation)
+            DetailTraitBar(stringResource(R.string.details_trait_affection), breed.affectionLevel)
+            DetailTraitBar(stringResource(R.string.details_trait_energy), breed.energyLevel)
+            DetailTraitBar(stringResource(R.string.details_trait_intelligence), breed.intelligence)
+            DetailTraitBar(stringResource(R.string.details_trait_child_friendly), breed.childFriendly)
+            DetailTraitBar(stringResource(R.string.details_trait_social), breed.socialNeeds)
+            DetailTraitBar(stringResource(R.string.details_trait_grooming), breed.grooming)
+            DetailTraitBar(stringResource(R.string.details_trait_vocalisation), breed.vocalisation)
         }
     }
 }

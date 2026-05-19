@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -40,7 +41,7 @@ internal fun QuickFilterRow(
         items(QuickFilter.entries.size) { index ->
             val filter = QuickFilter.entries[index]
             BrowseFilterChip(
-                label = filter.label,
+                label = stringResource(filter.labelResId),
                 selected = selected == filter,
                 onClick = { onSelectFilter(filter) },
             )

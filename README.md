@@ -4,7 +4,7 @@ Android code assessment app for browsing cat breeds from [TheCatAPI](https://dev
 
 ## Problem And Solution
 
-The app fetches cat breeds, shows one image per breed, supports Browse -> Details -> Filters, and remains useful offline after a successful sync. Room is the authoritative data source: screens observe local database flows, while network refreshes only update the local store. Production builds do not ship mock breed data.
+The app fetches cat breeds, shows one image per breed, supports Browse -> Details -> Filters, and remains useful offline after a successful sync. Room is the authoritative data source: screens observe local database flows, while network refreshes only update the local store.
 
 ## Architecture
 
@@ -40,13 +40,4 @@ Client-side mobile keys are still extractable from built APKs. For production-gr
 - Filters are applied in repository memory because the breed dataset is small. If the dataset grew, filtering should move into indexed Room queries or FTS.
 - The API key is optional because the assessment endpoint works without one. A production app should proxy requests through a backend when the key must remain secret.
 - Favorites are local-only. A real account feature would sync them through a backend.
-- The design follows the supplied Figma direction closely, but uses platform fonts instead of bundled Roboto Serif assets to keep the assessment focused.
-- More tests should be added around the repository with fake DAOs and around Room migrations before production release.
-
-## Build And Test
-
-```bash
-./gradlew --no-configuration-cache :core:model:testDebugUnitTest :app:assembleDebug
-```
-
-The debug APK is generated at `app/build/outputs/apk/debug/app-debug.apk`.
+- Some visible UI affordances are presentational and not fully implemented yet, including share, compare, voice search, and add-filter actions. These should either be wired to real behavior or hidden before treating the app as production-ready.

@@ -19,9 +19,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.FilterSlidersIcon
 import com.dawn.catlovers.feature.breeds.component.StarBadgeIcon
 
@@ -34,7 +36,7 @@ internal fun WhySignInSection(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
-            text = "WHY SIGN IN?",
+            text = stringResource(R.string.profile_why_sign_in),
             color = CatLoversColors.SoyaBean,
             style = MaterialTheme.typography.labelMedium.copy(
                 fontSize = 10.sp,
@@ -45,15 +47,15 @@ internal fun WhySignInSection(modifier: Modifier = Modifier) {
         Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
             SignInReasonItem(
                 icon = Icons.Rounded.Favorite,
-                text = "Save favorites across devices",
+                text = stringResource(R.string.profile_reason_save_favorites),
             )
             SignInReasonItem(
                 icon = FilterSlidersIcon,
-                text = "Keep personal notes with every breed",
+                text = stringResource(R.string.profile_reason_notes),
             )
             SignInReasonItem(
                 icon = StarBadgeIcon,
-                text = "Restore your shortlist on a new device",
+                text = stringResource(R.string.profile_reason_restore),
             )
         }
     }

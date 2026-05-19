@@ -17,11 +17,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.FilterSlidersIcon
 import com.dawn.catlovers.feature.breeds.component.IconCircleButton
 
@@ -48,7 +50,7 @@ internal fun FavoritesHeader(
         ) {
             IconCircleButton(
                 imageVector = FilterSlidersIcon,
-                contentDescription = "Open filters",
+                contentDescription = stringResource(R.string.content_description_open_filters),
                 onClick = onOpenFilters,
                 buttonSize = 33.dp,
                 iconSize = 20.dp,
@@ -56,7 +58,7 @@ internal fun FavoritesHeader(
             Row(horizontalArrangement = Arrangement.spacedBy(0.dp)) {
                 IconCircleButton(
                     imageVector = Icons.Rounded.Search,
-                    contentDescription = "Search breeds",
+                    contentDescription = stringResource(R.string.content_description_search_breeds),
                     onClick = onSearch,
                     buttonSize = 33.dp,
                     iconSize = 20.dp,
@@ -64,7 +66,7 @@ internal fun FavoritesHeader(
                 if (favoriteCount > 0) {
                     IconCircleButton(
                         imageVector = Icons.Rounded.Share,
-                        contentDescription = "Share favorites",
+                        contentDescription = stringResource(R.string.content_description_share_favorites),
                         onClick = onShare,
                         buttonSize = 33.dp,
                         iconSize = 18.dp,
@@ -77,7 +79,7 @@ internal fun FavoritesHeader(
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             Text(
-                text = "YOUR SHORTLIST",
+                text = stringResource(R.string.favorites_eyebrow),
                 color = CatLoversColors.StTropaz,
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontSize = 11.sp,
@@ -86,7 +88,7 @@ internal fun FavoritesHeader(
                 ),
             )
             Text(
-                text = "Favorites",
+                text = stringResource(R.string.favorites_title),
                 color = CatLoversColors.Zeus,
                 style = MaterialTheme.typography.displayMedium.copy(
                     fontSize = 27.sp,
@@ -117,7 +119,7 @@ internal fun FavoritesHeader(
                         ),
                     )
                     Text(
-                        text = "· saved shortlist",
+                        text = stringResource(R.string.favorites_saved_shortlist_suffix),
                         color = CatLoversColors.SoyaBean,
                         style = MaterialTheme.typography.labelMedium.copy(
                             fontSize = 11.5.sp,

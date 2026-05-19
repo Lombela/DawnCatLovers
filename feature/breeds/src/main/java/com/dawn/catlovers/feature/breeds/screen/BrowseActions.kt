@@ -15,9 +15,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
+import com.dawn.catlovers.feature.breeds.R
 
 @Composable
 internal fun BrowseSurpriseButton(onClick: () -> Unit) {
@@ -41,7 +43,7 @@ internal fun BrowseSurpriseButton(onClick: () -> Unit) {
                 modifier = Modifier.size(17.dp),
             )
             Text(
-                text = "Surprise me",
+                text = stringResource(R.string.browse_surprise_me),
                 color = CatLoversColors.Midnight,
                 style = MaterialTheme.typography.labelMedium.copy(fontSize = 12.sp, lineHeight = 12.sp),
             )

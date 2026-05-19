@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
@@ -29,6 +30,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
+import com.dawn.catlovers.feature.breeds.R
 
 @Composable
 internal fun ProfileSignedOutContent(modifier: Modifier = Modifier) {
@@ -46,6 +48,9 @@ internal fun ProfileSignedOutContent(modifier: Modifier = Modifier) {
 
 @Composable
 private fun ProfileSignedOutHero(modifier: Modifier = Modifier) {
+    val titlePrefix = stringResource(R.string.profile_signed_out_prefix)
+    val titleEmphasis = stringResource(R.string.profile_signed_out_emphasis)
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -68,9 +73,10 @@ private fun ProfileSignedOutHero(modifier: Modifier = Modifier) {
         }
         Text(
             text = buildAnnotatedString {
-                append("Signed ")
+                append(titlePrefix)
+                append(" ")
                 withStyle(SpanStyle(fontStyle = FontStyle.Italic)) {
-                    append("out")
+                    append(titleEmphasis)
                 }
             },
             color = CatLoversColors.Zeus,
@@ -82,7 +88,7 @@ private fun ProfileSignedOutHero(modifier: Modifier = Modifier) {
             modifier = Modifier.padding(top = 15.dp),
         )
         Text(
-            text = "Sign in to sync your favorites and notes across devices.",
+            text = stringResource(R.string.profile_signed_out_body),
             color = CatLoversColors.SoyaBean,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyMedium.copy(
@@ -99,7 +105,7 @@ private fun ProfileSignedOutHero(modifier: Modifier = Modifier) {
 @Composable
 private fun ProfileSignedOutFooter(modifier: Modifier = Modifier) {
     Text(
-        text = "You can keep browsing without an account - favorites stay on this device.",
+        text = stringResource(R.string.profile_signed_out_footer),
         color = CatLoversColors.SoyaBean,
         textAlign = TextAlign.Center,
         style = MaterialTheme.typography.labelMedium.copy(

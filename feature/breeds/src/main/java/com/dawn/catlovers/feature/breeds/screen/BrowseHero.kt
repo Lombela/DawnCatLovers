@@ -26,14 +26,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.BreedImage
 import com.dawn.catlovers.feature.breeds.component.FavoriteButton
 import com.dawn.catlovers.feature.breeds.component.GradientScrim
+import com.dawn.catlovers.feature.breeds.originLabelText
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -103,7 +106,7 @@ internal fun HeroBreedCard(
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = "${breed.originLabel} · ${breed.temperamentPreview}",
+                text = "${breed.originLabelText()} · ${breed.temperamentPreview}",
                 color = Color.White.copy(alpha = 0.86f),
                 style = MaterialTheme.typography.labelMedium.copy(fontSize = 11.sp, lineHeight = 15.sp),
                 maxLines = 1,
@@ -131,7 +134,7 @@ private fun BreedOfDayChip(modifier: Modifier = Modifier) {
             modifier = Modifier.size(12.dp),
         )
         Text(
-            text = "BREED OF THE DAY",
+            text = stringResource(R.string.browse_breed_of_the_day),
             color = CatLoversColors.Zeus,
             style = MaterialTheme.typography.labelMedium.copy(
                 fontSize = 9.sp,

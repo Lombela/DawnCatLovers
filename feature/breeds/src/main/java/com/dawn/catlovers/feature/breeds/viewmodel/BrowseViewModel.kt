@@ -9,6 +9,7 @@ import com.dawn.catlovers.core.domain.usecase.SetFavoriteUseCase
 import com.dawn.catlovers.core.model.BreedFilters
 import com.dawn.catlovers.core.model.CatBreed
 import com.dawn.catlovers.core.model.Lifestyle
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.uistate.BrowseUiState
 import com.dawn.catlovers.feature.breeds.uistate.QuickFilter
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,7 +34,7 @@ class BrowseViewModel @Inject constructor(
 ) : ViewModel() {
     private val selectedFilter = MutableStateFlow(QuickFilter.All)
     private val refreshing = MutableStateFlow(false)
-    private val syncMessage = MutableStateFlow<String?>(null)
+    private val syncMessageResId = MutableStateFlow<Int?>(null)
 
     private val breeds = selectedFilter
         .flatMapLatest { observeBreeds(it.toFilters()) }
@@ -42,13 +43,13 @@ class BrowseViewModel @Inject constructor(
         breeds,
         selectedFilter,
         refreshing,
-        syncMessage,
-    ) { breeds, selectedFilter, refreshing, syncMessage ->
+        syncMessageResId,
+    ) { breeds, selectedFilter, refreshing, syncMessageResId ->
         BrowseUiState(
             breeds = breeds,
             selectedFilter = selectedFilter,
             isRefreshing = refreshing,
-            syncMessage = syncMessage,
+            syncMessageResId = syncMessageResId,
         )
     }
         .flowOn(dispatchers.default)
@@ -70,8 +71,8 @@ class BrowseViewModel @Inject constructor(
         viewModelScope.launch {
             refreshing.value = true
             refreshBreeds()
-                .onSuccess { syncMessage.value = null }
-                .onFailure { syncMessage.value = "Could not update breeds. Showing saved data when available." }
+                .onSuccess { syncMessageResId.value = null }
+                .onFailure { syncMessageResId.value = R.string.browse_sync_failed }
             refreshing.value = false
         }
     }

@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -35,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.BreedImage
 import com.dawn.catlovers.feature.breeds.component.FavoriteButton
 import com.dawn.catlovers.feature.breeds.component.FilterSlidersIcon
@@ -74,8 +76,8 @@ internal fun FavoriteHeroCard(
                         .padding(11.dp),
                     horizontalArrangement = Arrangement.spacedBy(6.dp),
                 ) {
-                    FavoriteHeroChip(text = "PINNED", dark = true, showPin = true)
-                    FavoriteHeroChip(text = "Top match")
+                    FavoriteHeroChip(text = stringResource(R.string.favorites_pinned), dark = true, showPin = true)
+                    FavoriteHeroChip(text = stringResource(R.string.favorites_top_match))
                 }
                 FavoriteButton(
                     isFavorite = breed.isFavorite,
@@ -104,7 +106,10 @@ internal fun FavoriteHeroCard(
                         overflow = TextOverflow.Ellipsis,
                     )
                     Text(
-                        text = "Saved · ${breed.temperament.take(2).joinToString(" · ")}",
+                        text = stringResource(
+                            R.string.favorites_saved_with_traits,
+                            breed.temperament.take(2).joinToString(" · "),
+                        ),
                         color = Color.White.copy(alpha = 0.88f),
                         style = MaterialTheme.typography.labelMedium.copy(
                             fontSize = 11.5.sp,
@@ -163,6 +168,9 @@ private fun FavoriteHeroNote(
     breed: CatBreed,
     modifier: Modifier = Modifier,
 ) {
+    val noteTrait = breed.temperament.firstOrNull()?.lowercase()
+        ?: stringResource(R.string.favorites_note_fallback)
+
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -180,7 +188,7 @@ private fun FavoriteHeroNote(
             contentAlignment = Alignment.Center,
         ) {
             Text(
-                text = "YOU",
+                text = stringResource(R.string.favorites_you),
                 color = CatLoversColors.BottleGreen,
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontSize = 9.5.sp,
@@ -191,7 +199,7 @@ private fun FavoriteHeroNote(
             )
         }
         Text(
-            text = "\"${breed.name} is a strong match for ${breed.temperament.firstOrNull()?.lowercase() ?: "easy"} homes.\"",
+            text = stringResource(R.string.favorites_match_note, breed.name, noteTrait),
             color = CatLoversColors.SoyaBean,
             style = MaterialTheme.typography.labelMedium.copy(
                 fontSize = 11.5.sp,
@@ -216,21 +224,21 @@ private fun FavoriteHeroActions(onView: () -> Unit) {
         verticalAlignment = Alignment.CenterVertically,
     ) {
         FavoriteHeroAction(
-            label = "Compare",
+            label = stringResource(R.string.favorites_action_compare),
             icon = FilterSlidersIcon,
             onClick = {},
             modifier = Modifier.weight(1f),
         )
         ActionDivider()
         FavoriteHeroAction(
-            label = "Share",
+            label = stringResource(R.string.favorites_action_share),
             icon = Icons.Rounded.Share,
             onClick = {},
             modifier = Modifier.weight(1f),
         )
         ActionDivider()
         FavoriteHeroAction(
-            label = "View",
+            label = stringResource(R.string.favorites_action_view),
             icon = Icons.AutoMirrored.Rounded.ArrowForward,
             onClick = onView,
             modifier = Modifier.weight(1f),

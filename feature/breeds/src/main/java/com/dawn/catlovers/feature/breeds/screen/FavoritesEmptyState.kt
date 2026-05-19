@@ -29,6 +29,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
@@ -48,6 +49,9 @@ internal fun EmptyFavoritesContent(
     onOpenBreed: (String) -> Unit,
     onToggleFavorite: (CatBreed) -> Unit,
 ) {
+    val titlePrefix = stringResource(R.string.favorites_empty_title_prefix)
+    val titleEmphasis = stringResource(R.string.favorites_empty_title_emphasis)
+
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(bottom = 104.dp),
@@ -66,9 +70,10 @@ internal fun EmptyFavoritesContent(
                 )
                 Text(
                     text = buildAnnotatedString {
-                        append("No favorites ")
+                        append(titlePrefix)
+                        append(" ")
                         withStyle(SpanStyle(fontStyle = FontStyle.Italic)) {
-                            append("yet")
+                            append(titleEmphasis)
                         }
                     },
                     color = CatLoversColors.Zeus,
@@ -80,7 +85,7 @@ internal fun EmptyFavoritesContent(
                     modifier = Modifier.padding(top = 10.dp),
                 )
                 Text(
-                    text = "Tap the heart on any breed to build your shortlist. Add notes, tag them, and compare side-by-side.",
+                    text = stringResource(R.string.favorites_empty_body),
                     color = CatLoversColors.SoyaBean,
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.bodyMedium.copy(
@@ -149,7 +154,7 @@ private fun ExploreBreedsButton(
                 modifier = Modifier.size(18.dp),
             )
             Text(
-                text = "Explore breeds",
+                text = stringResource(R.string.favorites_explore_breeds),
                 color = Color.White,
                 style = MaterialTheme.typography.labelMedium.copy(fontSize = 12.5.sp, lineHeight = 13.sp),
             )
@@ -164,7 +169,7 @@ private fun HowItWorksSection(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.spacedBy(7.dp),
     ) {
         Text(
-            text = "HOW IT WORKS",
+            text = stringResource(R.string.favorites_how_it_works),
             color = CatLoversColors.SoyaBean,
             style = MaterialTheme.typography.labelMedium.copy(
                 fontSize = 10.5.sp,
@@ -172,9 +177,21 @@ private fun HowItWorksSection(modifier: Modifier = Modifier) {
                 letterSpacing = 0.7.sp,
             ),
         )
-        HowItWorksStep(number = "1", title = "Browse breeds", body = "Filter by coat, energy, lifestyle.")
-        HowItWorksStep(number = "2", title = "Tap the heart", body = "Save any breed to your shortlist.")
-        HowItWorksStep(number = "3", title = "Compare your picks", body = "Side-by-side traits to decide.")
+        HowItWorksStep(
+            number = stringResource(R.string.favorites_step_1_number),
+            title = stringResource(R.string.favorites_step_1_title),
+            body = stringResource(R.string.favorites_step_1_body),
+        )
+        HowItWorksStep(
+            number = stringResource(R.string.favorites_step_2_number),
+            title = stringResource(R.string.favorites_step_2_title),
+            body = stringResource(R.string.favorites_step_2_body),
+        )
+        HowItWorksStep(
+            number = stringResource(R.string.favorites_step_3_number),
+            title = stringResource(R.string.favorites_step_3_title),
+            body = stringResource(R.string.favorites_step_3_body),
+        )
     }
 }
 

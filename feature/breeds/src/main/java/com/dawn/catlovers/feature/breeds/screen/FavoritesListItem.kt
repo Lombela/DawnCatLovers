@@ -23,12 +23,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.BreedImage
 import com.dawn.catlovers.feature.breeds.component.CountryBadge
 
@@ -100,7 +102,7 @@ internal fun FavoriteListItem(
             ) {
                 FavoriteStatusChip()
                 Text(
-                    text = "· Saved",
+                    text = stringResource(R.string.favorites_saved_status),
                     color = CatLoversColors.SoyaBean,
                     style = MaterialTheme.typography.labelMedium.copy(
                         fontSize = 10.5.sp,
@@ -117,7 +119,7 @@ internal fun FavoriteListItem(
         ) {
             Icon(
                 imageVector = Icons.Rounded.Favorite,
-                contentDescription = "Remove favorite",
+                contentDescription = stringResource(R.string.content_description_remove_favorite),
                 tint = CatLoversColors.Zeus,
                 modifier = Modifier.size(18.dp),
             )
@@ -128,7 +130,7 @@ internal fun FavoriteListItem(
 @Composable
 private fun FavoriteStatusChip(modifier: Modifier = Modifier) {
     Text(
-        text = "Shortlist",
+        text = stringResource(R.string.favorites_shortlist),
         color = CatLoversColors.BottleGreen,
         style = MaterialTheme.typography.labelMedium.copy(
             fontSize = 9.5.sp,

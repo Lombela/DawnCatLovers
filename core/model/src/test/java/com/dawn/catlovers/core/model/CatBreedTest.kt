@@ -11,12 +11,6 @@ class CatBreedTest {
         assertEquals("Alert · Agile · Energetic", breed.temperamentPreview)
     }
 
-    @Test
-    fun `origin label falls back when origin is blank`() {
-        assertEquals("Unknown", sampleBreed(origin = "").originLabel)
-        assertEquals("Thailand", sampleBreed(origin = "Thailand").originLabel)
-    }
-
     private fun sampleBreed(
         origin: String = "United States",
         temperament: List<String> = listOf("Alert"),

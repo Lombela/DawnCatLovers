@@ -29,12 +29,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.BreedImage
 import com.dawn.catlovers.feature.breeds.component.CountryBadge
 import com.dawn.catlovers.feature.breeds.component.FavoriteButton
@@ -50,12 +52,12 @@ internal fun BrowseSectionHeader(resultCount: Int) {
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
-            text = "All breeds",
+            text = stringResource(R.string.browse_all_breeds),
             color = CatLoversColors.Zeus,
             style = MaterialTheme.typography.titleMedium.copy(fontSize = 15.sp, lineHeight = 20.sp),
         )
         Text(
-            text = "$resultCount results",
+            text = stringResource(R.string.browse_result_count, resultCount),
             color = CatLoversColors.SoyaBean,
             style = MaterialTheme.typography.labelMedium.copy(
                 fontSize = 11.sp,
@@ -212,7 +214,7 @@ private fun HypoallergenicBadge(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center,
     ) {
         Text(
-            text = "HYPOALLERGENIC",
+            text = stringResource(R.string.browse_hypoallergenic_badge),
             color = CatLoversColors.Zeus,
             style = MaterialTheme.typography.labelMedium.copy(
                 fontSize = 8.sp,
@@ -249,7 +251,7 @@ internal fun EmptyBrowseState(
             colors = ButtonDefaults.buttonColors(containerColor = CatLoversColors.StTropaz),
             shape = RoundedCornerShape(14.dp),
         ) {
-            Text("Try again")
+            Text(stringResource(R.string.browse_try_again))
         }
     }
 }

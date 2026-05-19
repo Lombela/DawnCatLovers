@@ -21,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.role
@@ -30,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
+import com.dawn.catlovers.feature.breeds.R
 
 @Composable
 internal fun ProfileAuthActions(modifier: Modifier = Modifier) {
@@ -39,8 +41,8 @@ internal fun ProfileAuthActions(modifier: Modifier = Modifier) {
             .padding(start = 34.dp, end = 34.dp, top = 25.dp),
         verticalArrangement = Arrangement.spacedBy(9.dp),
     ) {
-        DemoDisabledPrimaryButton(text = "Sign in")
-        DemoDisabledOutlinedButton(text = "Create an account")
+        DemoDisabledPrimaryButton(text = stringResource(R.string.profile_sign_in))
+        DemoDisabledOutlinedButton(text = stringResource(R.string.profile_create_account))
         ContinueWithDivider(modifier = Modifier.padding(top = 9.dp))
         DemoDisabledGoogleButton(modifier = Modifier.padding(top = 3.dp))
     }
@@ -118,7 +120,7 @@ private fun ContinueWithDivider(modifier: Modifier = Modifier) {
             modifier = Modifier.weight(1f),
         )
         Text(
-            text = "OR CONTINUE WITH",
+            text = stringResource(R.string.profile_continue_with),
             color = CatLoversColors.SoyaBean,
             style = MaterialTheme.typography.labelMedium.copy(
                 fontSize = 10.sp,
@@ -159,7 +161,7 @@ private fun DemoDisabledGoogleButton(modifier: Modifier = Modifier) {
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
-                    text = "G",
+                    text = stringResource(R.string.profile_google_initial),
                     color = Color.White,
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.labelMedium.copy(
@@ -170,7 +172,7 @@ private fun DemoDisabledGoogleButton(modifier: Modifier = Modifier) {
                 )
             }
             Text(
-                text = "Google",
+                text = stringResource(R.string.profile_google),
                 color = CatLoversColors.Zeus.copy(alpha = 0.72f),
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontSize = 12.5.sp,

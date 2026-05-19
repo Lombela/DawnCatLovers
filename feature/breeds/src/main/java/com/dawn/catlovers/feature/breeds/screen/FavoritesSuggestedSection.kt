@@ -19,14 +19,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.BreedImage
 import com.dawn.catlovers.feature.breeds.component.FavoriteButton
+import com.dawn.catlovers.feature.breeds.originLabelText
 
 @Composable
 internal fun SuggestedFavoritesSection(
@@ -47,7 +50,7 @@ internal fun SuggestedFavoritesSection(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = "TRY THESE TO START",
+                text = stringResource(R.string.favorites_try_these),
                 color = CatLoversColors.SoyaBean,
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontSize = 10.5.sp,
@@ -56,7 +59,7 @@ internal fun SuggestedFavoritesSection(
                 ),
             )
             Text(
-                text = "Popular picks",
+                text = stringResource(R.string.favorites_popular_picks),
                 color = CatLoversColors.SoyaBean,
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontSize = 10.5.sp,
@@ -136,7 +139,7 @@ private fun SuggestedBreedCard(
                 overflow = TextOverflow.Ellipsis,
             )
             Text(
-                text = breed.temperament.firstOrNull() ?: breed.originLabel,
+                text = breed.temperament.firstOrNull() ?: breed.originLabelText(),
                 color = CatLoversColors.SoyaBean,
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontSize = 9.5.sp,

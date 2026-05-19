@@ -1,0 +1,145 @@
+<resources>
+    <string name="content_description_add_favorite">Add favorite</string>
+    <string name="content_description_back">Back</string>
+    <string name="content_description_clear_search">Clear search</string>
+    <string name="content_description_open_filters">Open filters</string>
+    <string name="content_description_open_wikipedia">Open Wikipedia</string>
+    <string name="content_description_refresh_breeds">Refresh breeds</string>
+    <string name="content_description_remove_favorite">Remove favorite</string>
+    <string name="content_description_search">Search</string>
+    <string name="content_description_search_breeds">Search breeds</string>
+    <string name="content_description_share">Share</string>
+    <string name="content_description_share_favorites">Share favorites</string>
+    <string name="content_description_voice_search">Voice search</string>
+
+    <string name="bottom_nav_browse">Browse</string>
+    <string name="bottom_nav_favorites">Favorites</string>
+    <string name="bottom_nav_profile">Profile</string>
+
+    <string name="quick_filter_all">All</string>
+    <string name="quick_filter_hypoallergenic">Hypoallergenic</string>
+    <string name="quick_filter_family">Family-friendly</string>
+    <string name="quick_filter_indoor">Indoor</string>
+    <string name="quick_filter_calm">Calm</string>
+
+    <string name="coat_length_hairless">Hairless</string>
+    <string name="coat_length_short">Short</string>
+    <string name="coat_length_semi_long">Semi-long</string>
+    <string name="coat_length_long">Long</string>
+
+    <string name="lifestyle_indoor">Indoor</string>
+    <string name="lifestyle_outdoor">Outdoor</string>
+    <string name="lifestyle_apartment">Apartment</string>
+    <string name="lifestyle_family">Family</string>
+    <string name="lifestyle_single">Single</string>
+
+    <string name="active_filter_coat">%1$s coat</string>
+    <string name="active_filter_clear_all">Clear all</string>
+    <string name="active_filter_clear_all_count">Clear all (%1$d)</string>
+    <string name="active_filter_energy">Energy %1$d+</string>
+    <string name="active_filter_hypoallergenic">Hypoallergenic</string>
+    <string name="add_filter">+ Add filter</string>
+
+    <string name="browse_eyebrow">CAT LOVER</string>
+    <string name="browse_title_prefix">Find your\n</string>
+    <string name="browse_title_emphasis">perfect</string>
+    <string name="browse_title_suffix">companion</string>
+    <string name="browse_syncing">Syncing TheCatAPI</string>
+    <string name="browse_all_breeds">All breeds</string>
+    <string name="browse_result_count">%1$d results</string>
+    <string name="browse_hypoallergenic_badge">HYPOALLERGENIC</string>
+    <string name="browse_try_again">Try again</string>
+    <string name="browse_surprise_me">Surprise me</string>
+    <string name="browse_breed_of_the_day">BREED OF THE DAY</string>
+    <string name="browse_empty_filter">No breeds match the current filter</string>
+    <string name="browse_sync_failed">Could not update breeds. Showing saved data when available.</string>
+    <string name="breed_origin_unknown">Unknown</string>
+
+    <string name="favorites_eyebrow">YOUR SHORTLIST</string>
+    <string name="favorites_title">Favorites</string>
+    <string name="favorites_saved_shortlist_suffix">· saved shortlist</string>
+    <string name="favorites_empty_title_prefix">No favorites</string>
+    <string name="favorites_empty_title_emphasis">yet</string>
+    <string name="favorites_empty_body">Tap the heart on any breed to build your shortlist. Add notes, tag them, and compare side-by-side.</string>
+    <string name="favorites_explore_breeds">Explore breeds</string>
+    <string name="favorites_how_it_works">HOW IT WORKS</string>
+    <string name="favorites_step_1_number">1</string>
+    <string name="favorites_step_1_title">Browse breeds</string>
+    <string name="favorites_step_1_body">Filter by coat, energy, lifestyle.</string>
+    <string name="favorites_step_2_number">2</string>
+    <string name="favorites_step_2_title">Tap the heart</string>
+    <string name="favorites_step_2_body">Save any breed to your shortlist.</string>
+    <string name="favorites_step_3_number">3</string>
+    <string name="favorites_step_3_title">Compare your picks</string>
+    <string name="favorites_step_3_body">Side-by-side traits to decide.</string>
+    <string name="favorites_segment_saved">Saved</string>
+    <string name="favorites_segment_recently_viewed">Recently viewed</string>
+    <string name="favorites_sort_name">Sort: Name</string>
+    <string name="favorites_also_saved">Also saved</string>
+    <plurals name="breed_count">
+        <item quantity="one">%1$d breed</item>
+        <item quantity="other">%1$d breeds</item>
+    </plurals>
+    <string name="favorites_compare_shortlist">Compare your shortlist</string>
+    <string name="favorites_compare_shortlist_body">Side-by-side traits, lifestyle, and grooming.</string>
+    <string name="favorites_pinned">PINNED</string>
+    <string name="favorites_top_match">Top match</string>
+    <string name="favorites_saved_with_traits">Saved · %1$s</string>
+    <string name="favorites_you">YOU</string>
+    <string name="favorites_note_fallback">easy</string>
+    <string name="favorites_match_note">&quot;%1$s is a strong match for %2$s homes.&quot;</string>
+    <string name="favorites_action_compare">Compare</string>
+    <string name="favorites_action_share">Share</string>
+    <string name="favorites_action_view">View</string>
+    <string name="favorites_saved_status">· Saved</string>
+    <string name="favorites_shortlist">Shortlist</string>
+    <string name="favorites_try_these">TRY THESE TO START</string>
+    <string name="favorites_popular_picks">Popular picks</string>
+
+    <string name="details_breed_not_found">Breed not found</string>
+    <string name="details_saved_to_favorites">Saved to favorites</string>
+    <string name="details_save_to_favorites">Save to favorites</string>
+    <string name="details_stat_lifespan">Lifespan</string>
+    <string name="details_stat_lifespan_value">%1$s yrs</string>
+    <string name="details_stat_weight">Weight</string>
+    <string name="details_stat_weight_value">%1$s kg</string>
+    <string name="details_stat_coat">Coat</string>
+    <string name="details_about">About</string>
+    <string name="details_wikipedia_title">Learn more on Wikipedia</string>
+    <string name="details_temperament">Temperament</string>
+    <string name="details_traits">Traits</string>
+    <string name="details_trait_affection">Affection</string>
+    <string name="details_trait_energy">Energy</string>
+    <string name="details_trait_intelligence">Intelligence</string>
+    <string name="details_trait_child_friendly">Child-friendly</string>
+    <string name="details_trait_social">Social</string>
+    <string name="details_trait_grooming">Grooming</string>
+    <string name="details_trait_vocalisation">Vocalisation</string>
+
+    <string name="filters_title">Filters</string>
+    <string name="filters_section_coat_length">Coat length</string>
+    <string name="filters_section_origin">Origin</string>
+    <string name="filters_any">Any</string>
+    <string name="filters_section_lifestyle">Lifestyle</string>
+    <string name="filters_matches">Matches</string>
+    <string name="filters_show">Show</string>
+    <plurals name="cat_count">
+        <item quantity="one">cat</item>
+        <item quantity="other">cats</item>
+    </plurals>
+
+    <string name="profile_title">Profile</string>
+    <string name="profile_signed_out_prefix">Signed</string>
+    <string name="profile_signed_out_emphasis">out</string>
+    <string name="profile_signed_out_body">Sign in to sync your favorites and notes across devices.</string>
+    <string name="profile_signed_out_footer">You can keep browsing without an account - favorites stay on this device.</string>
+    <string name="profile_sign_in">Sign in</string>
+    <string name="profile_create_account">Create an account</string>
+    <string name="profile_continue_with">OR CONTINUE WITH</string>
+    <string name="profile_google_initial" translatable="false">G</string>
+    <string name="profile_google" translatable="false">Google</string>
+    <string name="profile_why_sign_in">WHY SIGN IN?</string>
+    <string name="profile_reason_save_favorites">Save favorites across devices</string>
+    <string name="profile_reason_notes">Keep personal notes with every breed</string>
+    <string name="profile_reason_restore">Restore your shortlist on a new device</string>
+</resources>

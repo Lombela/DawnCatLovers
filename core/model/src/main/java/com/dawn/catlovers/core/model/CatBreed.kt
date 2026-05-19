@@ -28,7 +28,4 @@ data class CatBreed(
 ) {
     val temperamentPreview: String
         get() = temperament.take(3).joinToString(" · ")
-
-    val originLabel: String
-        get() = origin.ifBlank { "Unknown" }
 }

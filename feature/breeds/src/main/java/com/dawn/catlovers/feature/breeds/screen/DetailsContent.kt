@@ -27,9 +27,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
 import com.dawn.catlovers.core.model.CatBreed
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.BreedImage
 
 private val HeroHeight = 267.dp
@@ -114,20 +116,24 @@ private fun DetailTopBar(
     ) {
         DetailOverlayIconButton(
             imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-            contentDescription = "Back",
+            contentDescription = stringResource(R.string.content_description_back),
             onClick = onBack,
             iconSize = 18.dp,
         )
         Row(horizontalArrangement = Arrangement.spacedBy(3.dp)) {
             DetailOverlayIconButton(
                 imageVector = Icons.Rounded.Share,
-                contentDescription = "Share",
+                contentDescription = stringResource(R.string.content_description_share),
                 onClick = onShare,
                 iconSize = 17.dp,
             )
             DetailOverlayIconButton(
                 imageVector = if (isFavorite) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
-                contentDescription = if (isFavorite) "Remove favorite" else "Add favorite",
+                contentDescription = if (isFavorite) {
+                    stringResource(R.string.content_description_remove_favorite)
+                } else {
+                    stringResource(R.string.content_description_add_favorite)
+                },
                 onClick = onToggleFavorite,
                 iconSize = 18.dp,
             )

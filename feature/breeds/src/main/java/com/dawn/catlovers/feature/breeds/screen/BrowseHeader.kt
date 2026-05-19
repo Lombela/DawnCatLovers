@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dawn.catlovers.core.designsystem.CatLoversColors
+import com.dawn.catlovers.feature.breeds.R
 import com.dawn.catlovers.feature.breeds.component.FilterSlidersIcon
 import com.dawn.catlovers.feature.breeds.component.IconCircleButton
 
@@ -32,6 +34,10 @@ internal fun BrowseHeader(
     onOpenFilters: () -> Unit,
     onRefresh: () -> Unit,
 ) {
+    val titlePrefix = stringResource(R.string.browse_title_prefix)
+    val titleEmphasis = stringResource(R.string.browse_title_emphasis)
+    val titleSuffix = stringResource(R.string.browse_title_suffix)
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -47,7 +53,7 @@ internal fun BrowseHeader(
         ) {
             IconCircleButton(
                 imageVector = FilterSlidersIcon,
-                contentDescription = "Open filters",
+                contentDescription = stringResource(R.string.content_description_open_filters),
                 onClick = onOpenFilters,
                 buttonSize = 33.dp,
                 iconSize = 20.dp,
@@ -55,14 +61,14 @@ internal fun BrowseHeader(
             Row(horizontalArrangement = Arrangement.spacedBy(0.dp)) {
                 IconCircleButton(
                     imageVector = Icons.Rounded.Search,
-                    contentDescription = "Search",
+                    contentDescription = stringResource(R.string.content_description_search),
                     onClick = onOpenFilters,
                     buttonSize = 33.dp,
                     iconSize = 20.dp,
                 )
                 IconCircleButton(
                     imageVector = Icons.Rounded.FavoriteBorder,
-                    contentDescription = "Refresh breeds",
+                    contentDescription = stringResource(R.string.content_description_refresh_breeds),
                     onClick = onRefresh,
                     buttonSize = 33.dp,
                     iconSize = 20.dp,
@@ -74,7 +80,7 @@ internal fun BrowseHeader(
             verticalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             Text(
-                text = "CAT LOVER",
+                text = stringResource(R.string.browse_eyebrow),
                 color = CatLoversColors.StTropaz,
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontSize = 11.sp,
@@ -84,11 +90,12 @@ internal fun BrowseHeader(
             )
             Text(
                 text = buildAnnotatedString {
-                    append("Find your\n")
+                    append(titlePrefix)
                     withStyle(SpanStyle(fontStyle = FontStyle.Italic)) {
-                        append("perfect")
+                        append(titleEmphasis)
                     }
-                    append(" companion")
+                    append(" ")
+                    append(titleSuffix)
                 },
                 color = CatLoversColors.Zeus,
                 style = MaterialTheme.typography.displayMedium.copy(
@@ -106,7 +113,7 @@ internal fun BrowseHeader(
             ) {
                 CircularProgressIndicator(modifier = Modifier.size(14.dp), strokeWidth = 2.dp)
                 Text(
-                    text = "Syncing TheCatAPI",
+                    text = stringResource(R.string.browse_syncing),
                     color = CatLoversColors.SoyaBean,
                     style = MaterialTheme.typography.labelMedium,
                 )
